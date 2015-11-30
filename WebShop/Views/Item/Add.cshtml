@@ -1,0 +1,50 @@
+﻿@model WebShop.Models.AddEditItemModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add item</h2>
+@using (Html.BeginForm())
+{
+    <div class="container view">
+        <fieldset>
+            @Html.ValidationSummary(false)
+            <div class="editor-field">
+                <label>
+                    Название
+                    @Html.TextBoxFor(model => model.Name, new { @class = "input-field" })
+                </label>
+                @Html.ValidationMessageFor(model => model.Name, " ")
+            </div>
+            <div class="editor-field">
+                <label>
+                    Описание
+                    @Html.TextBoxFor(model => model.Description, new { @class = "input-field" })
+                </label>
+                @Html.ValidationMessageFor(model => model.Description, " ")
+            </div>
+            <div class="editor-field">
+                <label>
+                    Категория
+                    @Html.TextBoxFor(model => model.Category, new { @class = "input-field" })
+                </label>
+                @Html.ValidationMessageFor(model => model.Category, " ")
+            </div>
+            <div class="editor-field">
+                <label>
+                    Цена
+                    @Html.TextBoxFor(model => model.Price, new { @class = "input-field" })
+                </label>
+                @Html.ValidationMessageFor(model => model.Price, " ")
+            </div>
+            <div class="editor-field">
+                <label>
+                    Поместить в For-Sale?
+                    @Html.CheckBoxFor(model => model.ForSale)
+                </label>
+                @Html.ValidationMessageFor(model => model.ForSale)
+            </div>
+            <input type="submit" value="Отправить" class="btn btn-success" />
+        </fieldset>
+    </div>
+}

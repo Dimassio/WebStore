@@ -1,0 +1,9 @@
+/packages
+/Library/obj
+/Library/bin
+/Library/*.user
+/*.suo
+.vs/
+*.mdf
+*.ldf
+*.pdf
