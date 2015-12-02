@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebShop.Models;
 
 namespace WebShop
 {
@@ -12,6 +13,8 @@ namespace WebShop
     {
         protected void Application_Start()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            db.Database.Initialize(true);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

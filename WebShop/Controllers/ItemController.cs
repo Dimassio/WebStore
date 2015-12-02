@@ -8,29 +8,31 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace WebShop.Controllers
-{
+{   
     public class ItemController : Controller
     {
-        private List<Item> formItemList()
+       /* private List<Item> formItemList()
         {
             using (var db = new StoreContext())
             {
                 return db.Items.ToList();
             }
 
-        }
+        }*/
 
         public ActionResult Index()
         {
-            var itemList = formItemList();
-            return View(itemList);
+            /*var itemList = formItemList();
+            return View(itemList);*/
+            return View();
         }
 
         [HttpPost]
+        [Route("item/add")]
         [Authorize(Roles = "admin")]
         public ActionResult Add(AddEditItemModel model)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -39,12 +41,14 @@ namespace WebShop.Controllers
                 var newItem = new Item(model.Name, model.Price, model.Category, model.Description, model.ForSale);
                 db.Items.Add(newItem);
                 db.SaveChanges();
-                return Redirect("/Item/Index");
-            }
+                return View("/Item/Index");
+            }*/
+            return View();
         }
 
-        [Route("item/add")]
+        
         [HttpGet]
+        [Route("item/add")]
         [Authorize(Roles = "admin")]
         public ActionResult Add()
         {
@@ -57,23 +61,24 @@ namespace WebShop.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
-            using (var db = new StoreContext())
-            {
-                bool idIsValid = (from r in db.Items
-                                  select r.ItemId).Contains(id);
-                if (!idIsValid)
-                {
-                    return new HttpStatusCodeResult(404, "No item with such id: " + id);
-                }
-                var model = new AddEditItemModel();
-                var item = db.Items.Find(id);
-                model.Name = item.Name;
-                model.Description = item.Description;
-                model.Category = item.Category;
-                model.Price = item.Price;
-                model.ForSale = item.ForSale;
-                return View(model);
-            }
+            /* using (var db = new StoreContext())
+             {
+                 bool idIsValid = (from r in db.Items
+                                   select r.ItemId).Contains(id);
+                 if (!idIsValid)
+                 {
+                     return new HttpStatusCodeResult(404, "No item with such id: " + id);
+                 }
+                 var model = new AddEditItemModel();
+                 var item = db.Items.Find(id);
+                 model.Name = item.Name;
+                 model.Description = item.Description;
+                 model.Category = item.Category;
+                 model.Price = item.Price;
+                 model.ForSale = item.ForSale;
+                 return View(model);
+             }*/
+            return View();
         }
 
         [HttpPost]
@@ -81,7 +86,7 @@ namespace WebShop.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, AddEditItemModel model)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -95,8 +100,10 @@ namespace WebShop.Controllers
                 item.Price = model.Price;
                 db.SaveChanges();
                 return Redirect("/Item/Index");
-            }
+            }*/
+            return View();
         }
+        
 
     }
 }
