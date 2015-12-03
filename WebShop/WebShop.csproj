@@ -250,6 +250,7 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Basket\Edit.cshtml" />
     <Content Include="Views\Basket\Add.cshtml" />
+    <Content Include="Views\Item\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
