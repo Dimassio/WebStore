@@ -18,7 +18,7 @@ namespace WebStore.Models
         [Key]
         public int OrderId { get; set; }
 
-        public List<int> Items { get; set; }
+        public List<int> Items { get; set; } // todo: need it?
 
         public StatusEnum Status { get; set; }
 

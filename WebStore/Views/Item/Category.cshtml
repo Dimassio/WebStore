@@ -12,6 +12,10 @@
             <h5>Название: @item.Name</h5>
             <h5>Описание: @item.Description </h5>
             <h5>Цена: @item.Price</h5>
+            @if(item.ForSale)
+            {
+                @Html.ActionLink("В корзину", "Add", "Basket", new { id = @item.ItemId }, null)
+            }
         </div>
     }
 

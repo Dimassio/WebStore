@@ -449,7 +449,7 @@ namespace WebStore.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Item");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

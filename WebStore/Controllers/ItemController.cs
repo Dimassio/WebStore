@@ -7,7 +7,7 @@ using WebStore.Models;
 
 namespace WebStore.Controllers
 {
-    public class ItemController : Controller // todo: список товаров по категориям: создать кнопку на панели категории и от туда тоже можно в корзинукидать
+    public class ItemController : Controller 
     {
         private List<Item> formItemList()
         {
@@ -127,13 +127,14 @@ namespace WebStore.Controllers
             using (var db = new ApplicationDbContext())
             {
                 var item = db.Items.Find(id);
-                if (item == null) {
+                if (item == null)
+                {
                     return new HttpStatusCodeResult(404, "No item with such id: " + id);
                 }
                 db.Items.Remove(item);
                 db.SaveChanges();
                 return Redirect("/Item/Index");
-            }          
+            }
         }
     }
 }

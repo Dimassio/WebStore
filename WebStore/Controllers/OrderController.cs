@@ -22,7 +22,7 @@ namespace WebStore.Controllers
         public ActionResult Index()
         {
             var orderList = getOrderList();
-            return View(orderList); 
+            return View(orderList);
         }
 
         [Route("order/edit/{id:int}")]
@@ -34,18 +34,18 @@ namespace WebStore.Controllers
                 var order = db.Orders.Find(id);
                 order.Status = status;
                 db.SaveChanges();
-               return Redirect("/Order/Index");
+                return Redirect("/Order/Index");
             }
         }
 
-
+        [Authorize]
         public ActionResult Make()
         {
             using (var db = new ApplicationDbContext())
             {
                 Order order = new Order();
                 order.Items = new List<int>();
-                foreach(var b in db.Basket)
+                foreach (var b in db.Basket)
                 {
                     order.Items.Add(b.BasketTypeId);
                     db.Basket.Remove(b);
@@ -55,7 +55,13 @@ namespace WebStore.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return Redirect("/Item/Index");
-            }         
+            }
+        }
+
+        public ActionResult Show()
+        {
+            // todo::show orders of current User;
+            return View();
         }
 
     }

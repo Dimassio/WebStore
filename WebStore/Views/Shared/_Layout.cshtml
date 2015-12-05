@@ -25,11 +25,12 @@
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Добавить товар", "Add", "Item")</li>
+                        <li>@Html.ActionLink("Все заказы", "Index", "Order")</li>
                     }
-                    @if (User.IsInRole("admin"))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Заказы", "Index", "Order")</li>
-                    }
+                        <li> @Html.ActionLink("Мои заказы", "Show", "Order")</li>
+                    }                     
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
