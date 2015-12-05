@@ -1,7 +1,20 @@
-﻿
+﻿@using WebStore.Models
+
+@model List<BasketType>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Корзина</h2>
 
+<div class="row">
+    @foreach (var m in Model)
+    {
+        <div class="col-lg-3">
+            <h5>Название: @m.Item.Name</h5>
+            <h5>Описание: @m.Item.Name</h5>
+            <h5>Цена: @m.Item.Price</h5>
+            @Html.ActionLink("Убрать из корзины", "Delete", "Basket", new { id = @m.BasketTypeId }, null)
+        </div>
+    }
+</div>

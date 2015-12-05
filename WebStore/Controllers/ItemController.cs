@@ -24,11 +24,20 @@ namespace WebStore.Controllers
             return View(itemList);
         }
 
-        [Route("category/{id:int}")]
+        private List<Item> getCategoryList(int id)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                return db.Items.Where(item => item.Category == id).ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("item/category/{id:int}")]
         public ActionResult Category(int id)
         {
-            // todo: show id category
-            return View();
+            var itemCategoryList = getCategoryList(id);
+            return View(itemCategoryList);
         }
 
         [HttpPost]
@@ -36,6 +45,10 @@ namespace WebStore.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Add(AddEditItemModel model)
         {
+            if (model.Category != 1 && model.Category != 2 && model.Category != 3)
+            {
+                ModelState.AddModelError("Category", "Выберите категорию 1, 2 или 3");
+            }
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -45,7 +58,7 @@ namespace WebStore.Controllers
                 var newItem = new Item(model.Name, model.Price, model.Category, model.Description, model.ForSale);
                 db.Items.Add(newItem);
                 db.SaveChanges();
-                return View("/Item/Index");
+                return Redirect("/Item/Index");
             }
 
         }
@@ -106,6 +119,21 @@ namespace WebStore.Controllers
                 return Redirect("/Item/Index");
             }
 
+        }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult Delete(int id)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var item = db.Items.Find(id);
+                if (item == null) {
+                    return new HttpStatusCodeResult(404, "No item with such id: " + id);
+                }
+                db.Items.Remove(item);
+                db.SaveChanges();
+                return Redirect("/Item/Index");
+            }          
         }
     }
 }

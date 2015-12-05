@@ -9,12 +9,8 @@ namespace WebStore.Models
     public class BasketType
     {
         [Key]
-        public int OrderId { get; set; }
+        public int BasketTypeId { get; set; }  
 
-        public List<Item> Items { get; set; }
-
-        public StatusEnum Status { get; set; }
-
-        // todo: add date of order
+        public Item Item { get; set; }
     }
 }

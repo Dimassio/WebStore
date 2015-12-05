@@ -12,7 +12,7 @@ namespace WebStore.Models
         public double Price { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        public int Category { get; set; }
 
         [Required]
         public string Name { get; set; }

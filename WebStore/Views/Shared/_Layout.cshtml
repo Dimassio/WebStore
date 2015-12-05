@@ -22,6 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Корзина", "Index", "Basket")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Добавить товар", "Add", "Item")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
