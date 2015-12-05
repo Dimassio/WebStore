@@ -21,31 +21,34 @@ namespace WebStore.Controllers
         public ActionResult Index()
         {
             var orderList = getOrderList();
-            return View(orderList);
-
+            return View(orderList); // todo: create view with orders + editing status of order(again, by ActionLink)
         }
 
         [Route("order/edit/{id:int}")]
-        [HttpGet]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(StatusEnum status)   // Change status of order
         {
             using (var db = new ApplicationDbContext())
             {
-                return View(db.Orders.Find(id));
+ 
             }
         }
 
-        [HttpPost]
-        [Authorize(Roles = "admin")]
-        public ActionResult Edit(bool done, int id) // Admin can change only status of order
+
+        public ActionResult Make()
         {
             using (var db = new ApplicationDbContext())
             {
-                db.Orders.Find(id).Status = done ? StatusEnum.DONE : StatusEnum.IN_PROGRESS;
+                Order order = new Order();
+                foreach(var b in db.Basket)
+                {
+                    order.Items.Add(new Item(b.Name, b.Price, b.Category, b.Description, false));
+                }
+                order.Status = StatusEnum.IN_PROGRESS;
+                db.Orders.Add(order);
                 db.SaveChanges();
                 return Redirect("/Item/Index");
-            }
+            }         
         }
 
     }

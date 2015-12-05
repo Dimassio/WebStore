@@ -32,7 +32,10 @@ namespace WebStore.Controllers
             {
                 var item = db.Items.Find(id);
                 BasketType basketItem = new BasketType();
-                basketItem.Item = item;
+                basketItem.Name = item.Name;
+                basketItem.Description = item.Description;
+                basketItem.Price = item.Price;
+                basketItem.Category = item.Category;
                 db.Basket.Add(basketItem);
                 db.SaveChanges();
                 return Redirect("/Item/Index");

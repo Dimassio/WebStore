@@ -9,8 +9,18 @@ namespace WebStore.Models
     public class BasketType
     {
         [Key]
-        public int BasketTypeId { get; set; }  
+        public int BasketTypeId { get; set; }
 
-        public Item Item { get; set; }
+        [Required]
+        public double Price { get; set; }
+
+        [Required]
+        public int Category { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
     }
 }

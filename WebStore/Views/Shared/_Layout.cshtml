@@ -26,6 +26,10 @@
                     {
                         <li>@Html.ActionLink("Добавить товар", "Add", "Item")</li>
                     }
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Заказы", "Index", "Order")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

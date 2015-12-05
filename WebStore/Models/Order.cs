@@ -11,7 +11,6 @@ namespace WebStore.Models
     {
         DONE,   // admin marked it as done
         IN_PROGRESS, // we 've ordered it and wait for admin
-        NOT_READY // we haven't ordered it yet
     };
 
     public class Order
@@ -21,7 +20,7 @@ namespace WebStore.Models
 
         public List<Item> Items { get; set; }
 
-        public StatusEnum Status { get; set; } = StatusEnum.NOT_READY;
+        public StatusEnum Status { get; set; }
 
         // todo: add date of order
     }

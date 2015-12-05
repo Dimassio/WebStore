@@ -64,6 +64,5 @@ C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\bin\Micro
 C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\obj\Debug\WebStore.csprojResolveAssemblyReference.cache
 C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\obj\Debug\WebStore.dll
 C:\Users\USER\Desktop\Учеба\7 семестр\C#\WebStore\WebStore\obj\Debug\WebStore.pdb
