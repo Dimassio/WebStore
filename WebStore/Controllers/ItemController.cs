@@ -7,7 +7,7 @@ using WebStore.Models;
 
 namespace WebStore.Controllers
 {
-    public class ItemController : Controller
+    public class ItemController : Controller // todo: список товаров по категориям: создать кнопку на панели категории и от туда тоже можно в корзинукидать
     {
         private List<Item> formItemList()
         {

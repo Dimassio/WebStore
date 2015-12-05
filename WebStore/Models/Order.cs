@@ -18,10 +18,10 @@ namespace WebStore.Models
         [Key]
         public int OrderId { get; set; }
 
-        public List<Item> Items { get; set; }
+        public List<int> Items { get; set; }
 
         public StatusEnum Status { get; set; }
 
-        // todo: add date of order
+        public DateTime Date { get; set; }
     }
 }

@@ -1,8 +1,25 @@
-﻿@model List<WebStore.Models.Order>
+﻿@using WebStore.Models
+
+@model List<Order>
 
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Заказы:</h2>
-
+<div class="row">
+    <h2>Заказы:</h2>
+    @foreach (var o in Model)
+    {
+        <div class="col-lg-3">
+            Items:
+            @foreach (var i in o.Items)
+            {
+                <h5>i</h5>
+            }
+            <h5>Номер заказа: @o.OrderId</h5>
+            <h5>Статус: @o.Status.ToString() </h5>
+            <h5>Время заказа: @o.Date.ToLongTimeString(), @o.Date.ToLongDateString()</h5>
+            @Html.ActionLink("In Progress", "Edit", "Order", new { id = @o.OrderId, status = StatusEnum.IN_PROGRESS }, null)
+            @Html.ActionLink("Done", "Edit", "Order", new { id = @o.OrderId, status = StatusEnum.DONE }, null)
+        </div>
+    }
+</div>
