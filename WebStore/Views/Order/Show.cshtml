@@ -1,0 +1,18 @@
+﻿@using WebStore.Models
+@model ICollection<Order>
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Ваши заказы:</h2>
+
+<div class="row">
+    @foreach (var order in Model)
+    {
+        <div class="col-lg-3">
+            <h5> @order.OrderId</h5>
+            <h5>@order.Status.ToString()</h5>
+            <h5>@order.Date.ToLongTimeString(), @order.Date.ToLongDateString()</h5>
+        </div>
+    }
+</div>

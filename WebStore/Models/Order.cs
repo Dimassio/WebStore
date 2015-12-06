@@ -23,5 +23,7 @@ namespace WebStore.Models
         public StatusEnum Status { get; set; }
 
         public DateTime Date { get; set; }
+
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }

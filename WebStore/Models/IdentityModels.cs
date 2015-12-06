@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace WebStore.Models
 {
@@ -16,6 +17,8 @@ namespace WebStore.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

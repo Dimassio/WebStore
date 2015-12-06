@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using WebStore.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace WebStore.Controllers
 {
@@ -53,15 +57,22 @@ namespace WebStore.Controllers
                 order.Status = StatusEnum.IN_PROGRESS;
                 order.Date = DateTime.Now;
                 db.Orders.Add(order);
+                ApplicationUser user = db.Users.Find(User.Identity.GetUserId()); 
+                user.Orders.Add(order);
                 db.SaveChanges();
                 return Redirect("/Item/Index");
             }
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult Show()
         {
-            // todo::show orders of current User;
-            return View();
+            using (var db = new ApplicationDbContext())
+            {
+                ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
+                return View(user.Orders);
+            }
         }
 
     }
